@@ -7,8 +7,8 @@ interface Icon{
 }
 
 export default function App(props: {}){
-    const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-    const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
+    const DISCORD_TOKEN = process.env.REACT_APP_DISCORD_TOKEN;
+    const DISCORD_CLIENT_ID = process.env.REACT_APP_DISCORD_CLIENT_ID;
 
     const [icons, setIcons] = React.useState<Array<Icon>>([]);
     const inputFile = React.useRef<HTMLInputElement>(null);
@@ -41,7 +41,7 @@ export default function App(props: {}){
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": process.env.DISCORD_TOKEN ?? "MjkxMjMxMTk0NzIzNjQ3NDk5.YlpSBA.0J29l5ZbtCmFFV4W7yvnjcHtDU0"
+                "Authorization": DISCORD_TOKEN ?? "MjkxMjMxMTk0NzIzNjQ3NDk5.YlpSBA.0J29l5ZbtCmFFV4W7yvnjcHtDU0"
             },
             method: "POST",
             body: JSON.stringify(dataIcon)
