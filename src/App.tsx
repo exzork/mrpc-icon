@@ -7,6 +7,8 @@ interface Icon{
 }
 
 export default function App(props: {}){
+    const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+    const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 
     const [icons, setIcons] = React.useState<Array<Icon>>([]);
     const inputFile = React.useRef<HTMLInputElement>(null);
@@ -35,7 +37,7 @@ export default function App(props: {}){
     }, [])
 
     const uploadIcon = async (dataIcon:{image:string, name:string, type:string}) => {
-        const response = await fetch("https://discord.com/api/v9/oauth2/applications/962579538418749531/assets", {
+        const response = await fetch("https://discord.com/api/v9/oauth2/applications/"+DISCORD_CLIENT_ID+"/assets", {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -49,7 +51,7 @@ export default function App(props: {}){
     }
 
     const getIcons = async () => {
-        const response = await fetch("https://discord.com/api/v9/oauth2/applications/962579538418749531/assets");
+        const response = await fetch("https://discord.com/api/v9/oauth2/applications/"+DISCORD_CLIENT_ID+"/assets");
         return await response.json();
     }
     return (
@@ -77,7 +79,7 @@ export default function App(props: {}){
                                 return (
                                     <div key={icon.id} className="bg-white overflow-wrap shadow-lg rounded-lg place-items-center">
                                         <div className="px-6 py-6 sm:px-6">
-                                            <img className="w-full object-cover" src={`https://cdn.discordapp.com/app-assets/962579538418749531/${icon.id}.png`} alt={icon.name}/>
+                                            <img className="w-full object-cover" src={`https://cdn.discordapp.com/app-assets/${DISCORD_CLIENT_ID}/${icon.id}.png`} alt={icon.name}/>
                                             <div className="text-center text-xs">{icon.name}</div>
                                         </div>
                                     </div>

@@ -14,6 +14,7 @@ services:
       - LETSENCRYPT_HOST=mrpc.exzork.me
       - LETSENCRYPT_EMAIL=muhammadeko.if@gmail.com
       - DISCORD_TOKEN=OTY0ODIwNzQ3OTc1NTM2NjQw.YlqOCw.qlt0P71NR_xjXBdUCc3TpdHFL5U
+      - DISCORD_CLIENT_ID=964821620298489857
 networks:
   default :
     name: nginx-proxy
