@@ -7,7 +7,6 @@ interface Icon{
 }
 
 export default function App(props: {}){
-    const DISCORD_TOKEN = process.env.REACT_APP_DISCORD_TOKEN;
     const DISCORD_CLIENT_ID = process.env.REACT_APP_DISCORD_CLIENT_ID;
 
     const [icons, setIcons] = React.useState<Array<Icon>>([]);
@@ -37,11 +36,10 @@ export default function App(props: {}){
     }, [])
 
     const uploadIcon = async (dataIcon:{image:string, name:string, type:string}) => {
-        const response = await fetch("https://discord.com/api/v9/oauth2/applications/"+DISCORD_CLIENT_ID+"/assets", {
+        const response = await fetch("https://mrpc-server.exzork.me/upload", {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": DISCORD_TOKEN ?? "MjkxMjMxMTk0NzIzNjQ3NDk5.YlpSBA.0J29l5ZbtCmFFV4W7yvnjcHtDU0"
             },
             method: "POST",
             body: JSON.stringify(dataIcon)
