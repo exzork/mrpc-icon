@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  exzork_mrpc:
+    container_name: exzork_mrpc
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/mrpc
+      - /mrpc/node_modules
+      - /mrpc/build
+    environment:
+      - VIRTUAL_HOST=mrpc.exzork.me
+      - LETSENCRYPT_HOST=mrpc.exzork.me
+      - LETSENCRYPT_EMAIL=muhammadeko.if@gmail.com
+      - DISCORD_TOKEN=OTY0ODIwNzQ3OTc1NTM2NjQw.YlqOCw.qlt0P71NR_xjXBdUCc3TpdHFL5U
+networks:
+  default :
+    name: nginx-proxy
