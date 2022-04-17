@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import Swal from "sweetalert2";
 
 interface Icon{
     id: string,
@@ -44,8 +45,29 @@ export default function App(props: {}){
             method: "POST",
             body: JSON.stringify(dataIcon)
         });
-        const data = await response.json();
-        setIcons([...icons, data]);
+        if(response.status === 200){
+            let json = await response.json();
+            if(json["id"] !== undefined){
+                setIcons([...icons, json]);
+                await Swal.fire({
+                    title: "Success",
+                    text: "Upload success",
+                    icon: "success",
+                    toast: true,
+                    position: "top-end",
+                });
+            }else{
+                await Swal.fire("Error", "Something went wrong. Minimal icon size is 512x512px.", "error");
+            }
+        }else{
+            await Swal.fire({
+                title: "Error",
+                text: "Error uploading icon",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        }
+
     }
 
     const getIcons = async () => {
