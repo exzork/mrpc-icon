@@ -55,6 +55,7 @@ export default function App(props: {}){
                     timer: 2000,
                     toast: true,
                     position: "top-end",
+                    showConfirmButton: false,
                 });
             }else{
                 await Swal.fire("Error", "Something went wrong. Minimal icon size is 512x512px.", "error");
