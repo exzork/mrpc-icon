@@ -50,9 +50,9 @@ export default function App(props: {}){
             if(json["id"] !== undefined){
                 setIcons([...icons, json]);
                 await Swal.fire({
-                    title: "Success",
                     text: "Upload success",
                     icon: "success",
+                    timer: 2000,
                     toast: true,
                     position: "top-end",
                 });
